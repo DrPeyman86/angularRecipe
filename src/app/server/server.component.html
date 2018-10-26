@@ -1,0 +1,12 @@
+<!--string interpolation-->
+<!--ngStyle is a attribute directive-->
+<!--the square brackets are not part of the directive. they are for property binding. the square brackets indicate
+wanting to bind a property on the directive ngStyle which also has a property called exactly ngStyle. so we are wanting to 
+change the property ngStyle of the ngStyle directive-->
+<!--ngClass is another attribute directive works same as ngStyle-->
+<!--ngClass object is a key:value pair. Where the key is the name of the css selector.
+the value is the condition that should indicate whether or not that css class should be added or not-->
+<p 
+    [ngStyle]="{backgroundColor: getColor()}"
+    [ngClass]="{online: serverStatus === 'online'}"
+>{{ 'server' }} with ID {{ serverId }} is {{ getServerStatus() }}</p>

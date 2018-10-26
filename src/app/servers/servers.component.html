@@ -1,0 +1,53 @@
+<!--property binding-->
+<!--event binding (click)="someFunction()"-->
+<!--event binding does not have to be a method ,it could be an inline function you run, but generally it is a method-->
+<label>Server Name</label>
+<!--$event is a reserved keyword for using in event binding. this will be the data emitted with the event designated-->
+<!-- <input  
+    type="text"
+    class="form-control"
+    (input)="onUpdateServerName($event)"
+> -->
+<!--two-way binding [(ngModel)]="whatever property name"-->
+<input  
+    type="text"
+    class="form-control"
+    [(ngModel)]="serverName"
+>
+<!-- <p>{{ serverName }}</p> -->
+<button 
+    class="btn btn-primary" 
+    [disabled]="!allowNewServer"
+    (click)="onCreateServer()"
+    >Add Server</button>
+<p [innerText]="allowNewServer"></p>
+<!-- <p>{{ serverCreationStatus }}</p> -->
+<!--*ngIf is a directive in angular-->
+<!--the * star is needed, it tells the DOM it is a structural directive which means it changes the strucutre of the DOM
+it either adds the structure or remove it in the DOm-->
+<!--*ngIf will only work for true/false returns-->
+<!--the below also has an else-->
+<p *ngIf="serverCreated; else noServer">Server was created, server name is {{serverName}}</p>
+<ng-template #noServer>
+    <p>No Server was created</p>
+</ng-template>
+<!--the *ngFor directive loops an array-->
+<!--starts with "let" keyword where you set any temporary name you want such as "server"-->
+<!--followed by "of" and the name of the array, "servers" in this case defined in servers.component.ts file-->
+<app-server *ngFor="let server of servers"></app-server>
+<!-- <app-server></app-server> -->
+
+<input 
+    type="text"
+    class="form-control"
+    [(ngModel)]="userName"
+>
+<p>{{userName}}</p>
+<!--to disable the button you could run a function and include (input)="userNameLen($event)" on the input field above though-->
+<!--or include in the [disabled] att below-->
+<!-- [disabled]="!userNamePopulated" -->
+<button
+    class="btn btn-primary"
+    [disabled]="userName === ''"
+    (click)="userName = ''"
+>Reset User</button>

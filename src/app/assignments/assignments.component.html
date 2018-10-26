@@ -1,0 +1,11 @@
+<!-- <button
+  class="btn btn-primary"
+  (click)="showSecret = !showSecret; addDetails()">Display Details</button> -->
+  <button
+  class="btn btn-primary"
+  (click)="addDetails()">Display Details</button>
+<p *ngIf="showSecret">Secret word = tuna</p>
+<!--since details is now a date timestamp, you can't use iteration number 5 on it. 
+instead you can do ; let i(whatever name you want) = index.
+index is the index of the iteration you are on, 0 based-->
+<p *ngFor="let detail of details; let i = index" [ngClass]="{blueBack: i>=4}">Current iteration {{detail}}</p>
