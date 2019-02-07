@@ -9,6 +9,8 @@
     (input)="onUpdateServerName($event)"
 > -->
 <!--two-way binding [(ngModel)]="whatever property name"-->
+<!--ngModel directive will trigger the (input) event automatically and also update the value of serverName automatically if serverName
+was changed somewhere else-->
 <input  
     type="text"
     class="form-control"
@@ -28,6 +30,7 @@ it either adds the structure or remove it in the DOm-->
 <!--*ngIf will only work for true/false returns-->
 <!--the below also has an else-->
 <p *ngIf="serverCreated; else noServer">Server was created, server name is {{serverName}}</p>
+<!--ng-template is also a component directive that comes with native angular framework used to mark places in the DOM-->
 <ng-template #noServer>
     <p>No Server was created</p>
 </ng-template>
