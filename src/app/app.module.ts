@@ -9,6 +9,10 @@ import { ServersComponent } from './servers/servers.component';
 import { WarningAlertComponent } from './warning-alert/warning-alert.component';
 import { SuccessAlertComponent } from './success-alert/success-alert.component';
 import { AssignmentsComponent } from './assignments/assignments.component';
+import { DirectiveComponent } from './directive/directive.component';
+import { BasicHighlightDirective } from './basic-highlight/basic.highligh-directive';
+import { BetterHighlightDirective } from './better-highlight/better-highlight.directive';
+import { UnlessDirective } from './unless.directive';
 
 //adding the @NgModuel decorator transforms the AppModule typescript class 
 //below to set properties, declrations, imports. 
@@ -22,7 +26,11 @@ import { AssignmentsComponent } from './assignments/assignments.component';
     ServersComponent,
     WarningAlertComponent,
     SuccessAlertComponent,
-    AssignmentsComponent
+    AssignmentsComponent,
+    DirectiveComponent,
+    BasicHighlightDirective,
+    BetterHighlightDirective,
+    UnlessDirective
   ],
   imports: [
     BrowserModule,
