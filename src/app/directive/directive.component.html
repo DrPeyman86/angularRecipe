@@ -1,0 +1,82 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <button
+        class="btn btn-primary"
+        (click)="onlyOdd = !onlyOdd">Only show odd numbers</button>
+      <br><br>
+      <ul class="list-group">
+        <div *ngIf="onlyOdd">
+          <!--the * in front of ngFor designated that as a structural directive. structural directives with the *(star)  -->
+          <li
+            class="list-group-item"
+            [ngClass]="{odd: odd % 2 !== 0}"
+            [ngStyle]="{backgroundColor: odd % 2 !== 0 ? 'yellow' : 'transparent'}"
+            *ngFor="let oddNumber of oddNumbers">
+            {{ oddNumber }}
+          </li>
+        </div>
+        <div *ngIf="!onlyOdd">
+          <li
+            class="list-group-item"
+            [ngClass]="{odd: evenNumber % 2 !== 0}"
+            [ngStyle]="{backgroundColor: evenNumber % 2 !== 0 ? 'yellow' : 'transparent'}"
+            *ngFor="let evenNumber of evenNumbers"> 
+            {{ evenNumber }}
+        </li>
+        </div>
+        
+        <!--ng-template doesn't render by default. It only renders when certain condition on a page tigger the template to be rendered-->
+        <!--notice you do not put * in front of ngIf and it is also in square brackets because this is the FORM that will get transformed due to somewhere on page
+        *ngIf set that value. So this ngIf occurs after the *ngIf so that it can determine whether condition is met or not-->
+        <ng-template [ngIf]="!onlyAdd">
+          <div *ngIf="!onlyOdd">
+            <li
+              class="list-group-item"
+              [ngClass]="{odd: evenNumber % 2 !== 0}"
+              [ngStyle]="{backgroundColor: evenNumber % 2 !== 0 ? 'yellow' : 'transparent'}"
+              *ngFor="let evenNumber of evenNumbers">
+              {{ evenNumber }}
+            </li>
+          </div>
+        </ng-template>
+
+        <!--this is a custom made structural directive. we know it's a structural directive because it has the * in front of it. 
+        you only need to pass the value of onlyOdd boolean since the directive has conditions whether it should show odd or even, so no need to do the if statement here like above-->
+        <div *appUnless="onlyOdd">
+            <li
+              class="list-group-item"
+              [ngClass]="{odd: evenNumber % 2 !== 0}"
+              [ngStyle]="{backgroundColor: evenNumber % 2 !== 0 ? 'yellow' : 'transparent'}"
+              *ngFor="let evenNumber of evenNumbers">
+              {{ evenNumber }}
+            </li>
+          </div>
+      </ul>
+      <p appBasicHighlight>Style with me with attribute directive</p>
+      <!--with property binding you can set properties in the attribute directive so that the values can be set dynamically from outside somewhere rather than hardcoding for example colors in the directive itself-->
+      <p appBetterHighlight [defaultColor]="'yellow'" [highlightColor]="'red'">Style with me with better attribute directive</p>
+      <!--You can also do this. If you want to alias the property you set that has the same name as the attribute directive, enclose the attribute directive with square brackets
+        and than just set the property as you would above. You also have to alias the @Input('appBetterHighlight') in .ts file if you do this. Both ways work
+        For Property Binding - you could remove the square brackets as long as you also remove the single quotes within the double quotes. LIke below. 
+        But make sure you know that this is a property binding and not an actual attribute on an element. It can be easily confused with an actual attribute
+        <p [appBetterHighlight]="'red'" defaultColor="yellow" >Style with me with better attribute directive</p>
+      -->
+      <!--ngSwitch is like normal switch where you can have conditions for each switch case-->
+      <div [ngSwitch]="value">
+        <p *ngSwitchCase="5">
+          value is 5
+        </p>
+        <p *ngSwitchCase="10">
+          vlaue is 10
+        </p>
+        <p *ngSwitchDefault>
+          Value is default
+        </p>
+      </div>
+      <ng-template [ngIf]="onlyOdd">
+        <p>Only odd</p>
+      </ng-template>
+    </div>
+  </div>
+</div>
